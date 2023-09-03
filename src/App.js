@@ -1,5 +1,5 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { getTripsFromCache } from './Georide';
+import { getTripsFromCache, filterTrips } from './Georide';
 import showMap from './Map';
 import { getOptions, setOptions, getFormOptions, setFormOptions, setDefaultOptions } from './Options';
 
@@ -22,7 +22,8 @@ setFormOptions(options);
 
 getTripsFromCache()
     .then((res) => {
-        showMap(res, options);
+        const filteredTrips = filterTrips(res, options);
+        showMap(filteredTrips, options);
     })
     .catch((err) => {
         console.error(err);

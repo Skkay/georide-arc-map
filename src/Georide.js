@@ -1,3 +1,5 @@
+import { haversine } from './utils';
+
 const GEORIDE_API_KEY = import.meta.env.VITE_GEORIDE_API_KEY;
 const GEORIDE_TRACKER_ID = import.meta.env.VITE_GEORIDE_TRACKER_ID;
 const GEORIDE_API_URL = 'https://api.georide.com';
@@ -38,4 +40,26 @@ const getTripsFromCache = (forceRefresh = false) => {
     return Promise.resolve(JSON.parse(trips));
 };
 
-export { getTrips, getTripsFromCache };
+const filterTrips = (trips, options) => {
+    return trips.filter((trip) => {
+        if (trip.distance < options.georideMinTripDistance * 1000) {
+            return false;
+        }
+
+        if (trip.distance > options.georideMaxTripDistance * 1000) {
+            return false;
+        }
+
+        if (haversine(trip.startLat, trip.startLon, trip.endLat, trip.endLon) < options.georideMinDistance * 1000) {
+            return false;
+        }
+
+        if (haversine(trip.startLat, trip.startLon, trip.endLat, trip.endLon) > options.georideMaxDistance * 1000) {
+            return false;
+        }
+
+        return true;
+    });
+};
+
+export { getTrips, getTripsFromCache, filterTrips };
