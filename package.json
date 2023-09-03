@@ -12,6 +12,9 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "@deck.gl/core": "^8.9.27",
+    "@deck.gl/layers": "^8.9.27",
+    "@deck.gl/mapbox": "^8.9.27",
     "autoprefixer": "^10.4.15",
     "mapbox-gl": "^2.15.0",
     "postcss": "^8.4.29",
