@@ -11,9 +11,31 @@ const getTrips = (from = '2000-01-01', to = '2099-12-31') => {
         },
     };
 
-    return fetch(`${GEORIDE_API_URL}/tracker/${GEORIDE_TRACKER_ID}/trips?from=${from}&to=${to}`, init).then((res) =>
-        res.json()
-    );
+    return fetch(`${GEORIDE_API_URL}/tracker/${GEORIDE_TRACKER_ID}/trips?from=${from}&to=${to}`, init)
+        .then((res) => res.json())
+        .then((data) => {
+            return data.map((trip) => ({
+                id: trip.id,
+                startLat: trip.startLat,
+                startLon: trip.startLon,
+                endLat: trip.endLat,
+                endLon: trip.endLon,
+                distance: trip.distance,
+            }));
+        });
 };
 
-export { getTrips };
+const getTripsFromCache = (forceRefresh = false) => {
+    const trips = localStorage.getItem('georide-trips');
+
+    if (trips === null || forceRefresh === true) {
+        return getTrips().then((res) => {
+            localStorage.setItem('georide-trips', JSON.stringify(res));
+            return res;
+        });
+    }
+
+    return Promise.resolve(JSON.parse(trips));
+};
+
+export { getTrips, getTripsFromCache };

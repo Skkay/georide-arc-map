@@ -1,7 +1,7 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { getTrips } from './Georide';
+import { getTripsFromCache } from './Georide';
 import showMap from './Map';
 
-getTrips().then((res) => {
+getTripsFromCache().then((res) => {
     showMap(res);
 });
