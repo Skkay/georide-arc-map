@@ -1,21 +1,27 @@
 import { MapboxOverlay } from '@deck.gl/mapbox';
 import { ArcLayer } from '@deck.gl/layers';
 import mapboxgl from 'mapbox-gl';
+import { defaultOptions } from './Options';
+import { hexToRgb } from './utils';
 
-const showMap = (data) => {
-    const MAPBOX_API_KEY = import.meta.env.VITE_MAPBOX_API_KEY;
+const MAPBOX_API_KEY = import.meta.env.VITE_MAPBOX_API_KEY;
+
+const showMap = (data, options = {}) => {
+    options = { ...defaultOptions, ...options };
 
     mapboxgl.accessToken = MAPBOX_API_KEY;
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v11',
+        style: options.mapStyle,
         projection: 'mercator',
-        center: [0.45, 51.47],
-        zoom: 4,
+        center: [2.43, 47.05],
+        zoom: options.mapZoom,
         bearing: 0,
-        pitch: 30,
+        pitch: options.mapPitch,
     });
 
+    const mapArcStartColor = hexToRgb(options.mapArcStartColor);
+    const mapArcEndColor = hexToRgb(options.mapArcEndColor);
     const deckOverlay = new MapboxOverlay({
         layers: [
             new ArcLayer({
@@ -23,15 +29,16 @@ const showMap = (data) => {
                 data: data,
                 getSourcePosition: (d) => [d.startLon, d.startLat],
                 getTargetPosition: (d) => [d.endLon, d.endLat],
-                getSourceColor: [0, 128, 200],
-                getTargetColor: [200, 0, 80],
-                getWidth: 2,
+                getSourceColor: [mapArcStartColor.r, mapArcStartColor.g, mapArcStartColor.b],
+                getTargetColor: [mapArcEndColor.r, mapArcEndColor.g, mapArcEndColor.b],
+                getWidth: options.mapArcWidth,
             }),
         ],
     });
 
     map.addControl(deckOverlay);
     map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(new mapboxgl.FullscreenControl());
 };
 
 export default showMap;

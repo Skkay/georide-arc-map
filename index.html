@@ -7,7 +7,88 @@
         <title>Vite App</title>
     </head>
     <body>
-        <div id="map" class="h-screen w-full"></div>
+        <div class="flex h-screen bg-gray-100">
+            <aside class="z-50 bg-white w-96 p-2">
+                <div class="relative mt-5 p-3 border">
+                    <span class="absolute -top-3.5 inset-x-0 w-fit mx-auto bg-white px-2 font-semibold"
+                        >Map options</span
+                    >
+                    <div class="mt-3">
+                        <label>
+                            <span>Style</span>
+                            <select
+                                id="option-select-map-style"
+                                class="p-2 rounded-md w-full border border-gray-300 bg-gray-50 text-gray-900"
+                            >
+                                <option value="mapbox://styles/mapbox/dark-v11">dark-v11</option>
+                                <option value="mapbox://styles/mapbox/light-v11">light-v11</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="mt-3">
+                        <label>
+                            <span>Zoom</span>
+                            <input
+                                id="option-input-map-zoom"
+                                type="number"
+                                class="p-2 rounded-md w-full border border-gray-300 bg-gray-50 text-gray-900"
+                            />
+                        </label>
+                    </div>
+                    <div class="mt-3">
+                        <label>
+                            <span>Pitch</span>
+                            <input
+                                id="option-input-map-pitch"
+                                type="number"
+                                class="p-2 rounded-md w-full border border-gray-300 bg-gray-50 text-gray-900"
+                            />
+                        </label>
+                    </div>
+                    <div class="mt-3">
+                        <label>
+                            <span>Arc width</span>
+                            <input
+                                id="option-input-map-arc_width"
+                                type="number"
+                                class="p-2 rounded-md w-full border border-gray-300 bg-gray-50 text-gray-900"
+                            />
+                        </label>
+                    </div>
+                    <div class="mt-3">
+                        <label>
+                            <span>Arc start color</span>
+                            <input
+                                id="option-input-map-arc_start_color"
+                                type="text"
+                                class="p-2 rounded-md w-full border border-gray-300 bg-gray-50 text-gray-900"
+                            />
+                        </label>
+                    </div>
+                    <div class="mt-3">
+                        <label>
+                            <span>Arc end color</span>
+                            <input
+                                id="option-input-map-arc_end_color"
+                                type="text"
+                                class="p-2 rounded-md w-full border border-gray-300 bg-gray-50 text-gray-900"
+                            />
+                        </label>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <button id="option-button-save" class="px-2 py-1 rounded-md bg-orange-400 hover:bg-orange-300">
+                            Save
+                        </button>
+                        <button id="option-button-reset" class="px-2 py-1 rounded-md bg-orange-400 hover:bg-orange-300">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </aside>
+            <main class="w-full">
+                <div id="map" class="h-screen w-full"></div>
+            </main>
+        </div>
         <script type="module" src="/main.js"></script>
     </body>
 </html>
