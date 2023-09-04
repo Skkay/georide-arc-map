@@ -46,6 +46,7 @@ setFormOptions(options);
 getTripsFromCache()
     .then((res) => {
         const filteredTrips = filterTrips(res, options);
+        document.getElementById('loading-spinner').remove();
         showMap(filteredTrips, options);
     })
     .catch((err) => {
