@@ -4,6 +4,24 @@ const GEORIDE_API_KEY = import.meta.env.VITE_GEORIDE_API_KEY;
 const GEORIDE_TRACKER_ID = import.meta.env.VITE_GEORIDE_TRACKER_ID;
 const GEORIDE_API_URL = 'https://api.georide.com';
 
+const loginInputGeorideEmailEl = document.getElementById('login-input-georide-email');
+const loginInputGeoridePasswordEl = document.getElementById('login-input-georide-password');
+
+const getApiToken = () => {
+    const init = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: loginInputGeorideEmailEl.value,
+            password: loginInputGeoridePasswordEl.value,
+        }),
+    };
+
+    return fetch(`${GEORIDE_API_URL}/user/login`, init).then((res) => res.json());
+};
+
 const getTrips = (from = '2000-01-01', to = '2099-12-31') => {
     const init = {
         method: 'GET',
@@ -62,4 +80,4 @@ const filterTrips = (trips, options) => {
     });
 };
 
-export { getTrips, getTripsFromCache, filterTrips };
+export { getApiToken, getTrips, getTripsFromCache, filterTrips };
