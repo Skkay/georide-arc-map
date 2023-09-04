@@ -1,6 +1,7 @@
+import { getOptions } from './Options';
 import { haversine } from './utils';
 
-const GEORIDE_API_KEY = import.meta.env.VITE_GEORIDE_API_KEY;
+const GEORIDE_API_KEY = getOptions().georideApiToken;
 const GEORIDE_TRACKER_ID = import.meta.env.VITE_GEORIDE_TRACKER_ID;
 const GEORIDE_API_URL = 'https://api.georide.com';
 
