@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+    app:
+        image: georide-arc-map
+        build:
+            context: .
+            args:
+                VITE_MAPBOX_API_KEY: 'your_mabpox_api_key'
+        container_name: georide-arc-map
+        restart: always
+        ports:
+            - 3000:80
