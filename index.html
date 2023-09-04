@@ -193,7 +193,7 @@
             </aside>
             <main class="w-full relative">
                 <div id="map" class="h-screen w-full"></div>
-                <div class="absolute inset-0 h-screen flex justify-center items-center">
+                <div id="info-panel" class="absolute inset-0 h-screen flex justify-center items-center">
                     <div id="loading-spinner" class="text-gray-500">
                         <svg
                             class="animate-spin h-5 w-5 inline"
@@ -216,6 +216,24 @@
                             ></path>
                         </svg>
                         Loading...
+                    </div>
+                    <div id="error-info" class="px-10 hidden">
+                        <p>Unable to load Georide map or tracks.</p>
+                        <ul class="list-disc list-inside mt-3">
+                            <li>
+                                Make sure you have defined your Georide API token : you can get it by your own way or
+                                use the above form.
+                            </li>
+                            <li>
+                                Make sure you have defined your Georide tracker ID : you can get it by your own way or
+                                click the link "Click to list my trackers" to list your tracker IDs.
+                            </li>
+                            <li>
+                                Make sure you have correctly set the options. You can reset them by clicking the "Reset"
+                                button at the bottom of the side menu.
+                            </li>
+                            <li>Also, don't forget to click the "Save" button at the bottom of the side menu.</li>
+                        </ul>
                     </div>
                 </div>
             </main>

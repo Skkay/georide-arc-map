@@ -9,6 +9,10 @@ const optionButtonSaveEl = document.getElementById('option-button-save');
 const optionResetSaveEl = document.getElementById('option-button-reset');
 const buttonForceRefreshEl = document.getElementById('button-force_refresh');
 
+const infoPanelEl = document.getElementById('info-panel');
+const loadingSpinnerEl = document.getElementById('loading-spinner');
+const errorInfoEl = document.getElementById('error-info');
+
 loginButtonGetApiTokenEl.addEventListener('click', () => {
     getApiToken().then((res) => {
         const options = getOptions();
@@ -52,9 +56,11 @@ setFormOptions(options);
 getTripsFromCache()
     .then((res) => {
         const filteredTrips = filterTrips(res, options);
-        document.getElementById('loading-spinner').remove();
+        infoPanelEl.classList.add('hidden');
         showMap(filteredTrips, options);
     })
     .catch((err) => {
         console.error(err);
+        loadingSpinnerEl.classList.add('hidden');
+        errorInfoEl.classList.remove('hidden');
     });
