@@ -7,6 +7,7 @@ const loginButtonGetApiTokenEl = document.getElementById('login-button-get_api_t
 const trackerButtonListTrackersEl = document.getElementById('tracker-button-list_trackers');
 const optionButtonSaveEl = document.getElementById('option-button-save');
 const optionResetSaveEl = document.getElementById('option-button-reset');
+const buttonForceRefreshEl = document.getElementById('button-force_refresh');
 
 loginButtonGetApiTokenEl.addEventListener('click', () => {
     getApiToken().then((res) => {
@@ -37,6 +38,11 @@ optionButtonSaveEl.addEventListener('click', () => {
 
 optionResetSaveEl.addEventListener('click', () => {
     setDefaultOptions();
+    location.reload();
+});
+
+buttonForceRefreshEl.addEventListener('click', () => {
+    localStorage.removeItem('georide-trips');
     location.reload();
 });
 
