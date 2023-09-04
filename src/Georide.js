@@ -23,6 +23,25 @@ const getApiToken = () => {
     return fetch(`${GEORIDE_API_URL}/user/login`, init).then((res) => res.json());
 };
 
+const getTrackers = () => {
+    const init = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${GEORIDE_API_KEY}`,
+        },
+    };
+
+    return fetch(`${GEORIDE_API_URL}/user/trackers`, init)
+        .then((res) => res.json())
+        .then((data) => {
+            return data.map((tracker) => ({
+                trackerId: tracker.trackerId,
+                trackerName: tracker.trackerName,
+            }));
+        });
+};
+
 const getTrips = (from = '2000-01-01', to = '2099-12-31') => {
     const init = {
         method: 'GET',
@@ -81,4 +100,4 @@ const filterTrips = (trips, options) => {
     });
 };
 
-export { getApiToken, getTrips, getTripsFromCache, filterTrips };
+export { getApiToken, getTrackers, getTrips, getTripsFromCache, filterTrips };

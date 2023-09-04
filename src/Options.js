@@ -1,4 +1,5 @@
-const optionInputGeorideApiToken = document.getElementById('option-input-georide-api_token');
+const optionInputGeorideApiTokenEl = document.getElementById('option-input-georide-api_token');
+const optionInputGeorideTrackerIdEl = document.getElementById('option-input-georide-tracker_id');
 const optionInputGeorideMinTripDistanceEl = document.getElementById('option-input-georide-min_trip_distance');
 const optionInputGeorideMaxTripDistanceEl = document.getElementById('option-input-georide-max_trip_distance');
 const optionInputGeorideMinDistanceEl = document.getElementById('option-input-georide-min_distance');
@@ -12,6 +13,7 @@ const optionInputMapArcEndColor = document.getElementById('option-input-map-arc_
 
 const defaultOptions = {
     georideApiToken: '',
+    georideTrackerId: '',
     georideMinTripDistance: 0,
     georideMaxTripDistance: 1000000,
     georideMinDistance: 0,
@@ -46,7 +48,8 @@ const setOptions = (options) => {
 
 const getFormOptions = () => {
     const options = {
-        georideApiToken: optionInputGeorideApiToken.value,
+        georideApiToken: optionInputGeorideApiTokenEl.value,
+        georideTrackerId: optionInputGeorideTrackerIdEl.value,
         georideMinTripDistance: parseInt(optionInputGeorideMinTripDistanceEl.value),
         georideMaxTripDistance: parseInt(optionInputGeorideMaxTripDistanceEl.value),
         georideMinDistance: parseInt(optionInputGeorideMinDistanceEl.value),
@@ -63,7 +66,8 @@ const getFormOptions = () => {
 };
 
 const setFormOptions = (options) => {
-    optionInputGeorideApiToken.value = options.georideApiToken;
+    optionInputGeorideApiTokenEl.value = options.georideApiToken;
+    optionInputGeorideTrackerIdEl.value = options.georideTrackerId;
     optionInputGeorideMinTripDistanceEl.value = options.georideMinTripDistance;
     optionInputGeorideMaxTripDistanceEl.value = options.georideMaxTripDistance;
     optionInputGeorideMinDistanceEl.value = options.georideMinDistance;
